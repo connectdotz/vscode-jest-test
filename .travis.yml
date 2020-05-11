@@ -12,25 +12,24 @@ env:
 git:
   autocrlf: input
 
-jobs:
-  - stage: "verify"
-    name: "verify"
-    node_js: "10"
-    os: osx
-    script: yarn danger ci
+# jobs:
+#   - stage: 'verify'
+#     name: 'verify'
+#     node_js: '10'
+#     os: osx
+#     script: yarn danger ci
 
 node_js:
   - "10"
-  - "lts/*"
+  # - 'lts/*'
 
 os:
   - osx
-  - linux
+  # - linux
   - windows
 
 script:
+  - yarn prettier-project-check
   - yarn ci
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  # - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   - yarn vscode:prepublish
-  
-
